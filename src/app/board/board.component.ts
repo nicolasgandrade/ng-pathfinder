@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class BoardComponent implements OnInit {
   rows = 15;
   cols = 40;
+  initialNode = [7, 10];
+  finalNode = [7, 30];
 
   constructor() {}
 
