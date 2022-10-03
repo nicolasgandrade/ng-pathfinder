@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BoardComponent implements OnInit {
   rows = 15;
-  cols = 50;
+  cols = 40;
 
   constructor() {}
 

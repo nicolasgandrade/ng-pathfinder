@@ -1,5 +1,11 @@
-<div *ngFor="let row of [].constructor(rows); let rowIndex = index">
-  <div *ngFor="let col of [].constructor(cols); let colIndex = index">
+<div
+  *ngFor="let row of [].constructor(rows); let rowIndex = index"
+  class="rows"
+>
+  <div
+    *ngFor="let col of [].constructor(cols); let colIndex = index"
+    class="columns"
+  >
     <app-node></app-node>
   </div>
 </div>
