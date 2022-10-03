@@ -1,1 +1,5 @@
-<p>board works!</p>
+<div *ngFor="let row of [].constructor(rows); let rowIndex = index">
+  <div *ngFor="let col of [].constructor(cols); let colIndex = index">
+    <app-node></app-node>
+  </div>
+</div>
