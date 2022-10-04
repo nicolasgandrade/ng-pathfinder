@@ -1,1 +1,4 @@
-<div class="node"></div>
+<div
+  class="node"
+  [ngClass]="node.isInitial ? 'initial' : node.isFinal ? 'final' : ''"
+></div>

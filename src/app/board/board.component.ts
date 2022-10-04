@@ -40,6 +40,6 @@ export class BoardComponent implements OnInit {
       boardNodes.push(currentRow);
     }
 
-    console.log(boardNodes);
+    this.nodes = boardNodes;
   }
 }
