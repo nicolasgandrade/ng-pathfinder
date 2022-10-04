@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Node from '../models/node';
 
 @Component({
   selector: 'app-board',
@@ -11,7 +12,34 @@ export class BoardComponent implements OnInit {
   initialNode = [7, 10];
   finalNode = [7, 30];
 
-  constructor() {}
+  nodes: Array<Array<Node>> = [];
 
-  ngOnInit(): void {}
+  constructor() {
+    console.log('teste');
+    this.createBoard();
+  }
+
+  ngOnInit(): void {
+    console.log('teste');
+    this.createBoard();
+  }
+
+  createBoard() {
+    const boardNodes = [];
+    for (let row = 0; row < this.rows; row++) {
+      const currentRow = [];
+      for (let col = 0; col < this.cols; col++) {
+        const node = new Node(
+          row,
+          col,
+          row == this.initialNode[0] && col == this.initialNode[1],
+          row == this.finalNode[0] && col == this.finalNode[1]
+        );
+        currentRow.push(node);
+      }
+      boardNodes.push(currentRow);
+    }
+
+    console.log(boardNodes);
+  }
 }
