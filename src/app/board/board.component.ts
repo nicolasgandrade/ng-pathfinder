@@ -14,13 +14,9 @@ export class BoardComponent implements OnInit {
 
   nodes: Array<Array<Node>> = [];
 
-  constructor() {
-    console.log('teste');
-    this.createBoard();
-  }
+  constructor() {}
 
   ngOnInit(): void {
-    console.log('teste');
     this.createBoard();
   }
 
