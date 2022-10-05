@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Node from '../models/node';
+import { runDijkstra } from '../algorithms/dijkstra';
 
 @Component({
   selector: 'app-board',
@@ -9,8 +10,8 @@ import Node from '../models/node';
 export class BoardComponent implements OnInit {
   rows = 15;
   cols = 40;
-  initialNode = [7, 10];
-  finalNode = [7, 30];
+  initialNode = new Node(7, 10, true, false, 0);
+  finalNode = new Node(7, 30, false, true, Infinity);
 
   nodes: Array<Array<Node>> = [];
 
@@ -18,6 +19,7 @@ export class BoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.createBoard();
+    runDijkstra(this.nodes, this.initialNode, this.finalNode)
   }
 
   createBoard() {
@@ -28,8 +30,8 @@ export class BoardComponent implements OnInit {
         const node = new Node(
           row,
           col,
-          row == this.initialNode[0] && col == this.initialNode[1],
-          row == this.finalNode[0] && col == this.finalNode[1]
+          row == this.initialNode.row && col == this.initialNode.col,
+          row == this.finalNode.row && col == this.finalNode.col
         );
         currentRow.push(node);
       }
