@@ -57,5 +57,18 @@ function findNeighbors(node: Node, grid: Array<Array<Node>>): Array<Node> {
 
 function updateNeighbors(node: Node, grid: Array<Array<Node>>) {
   const foundNeighbors = findNeighbors(node, grid);
-  foundNeighbors.forEach(neighbor => neighbor.distance = node.distance + 1);
+  foundNeighbors.forEach(neighbor => {
+    neighbor.distance = node.distance + 1;
+    neighbor.prevNode = node;
+  });
+}
+
+export function getShortestPath(finalNode: Node) {
+  const nodesInOrder = [];
+  let currentNode = finalNode;
+  while (currentNode.prevNode !== undefined) {
+    nodesInOrder.unshift(currentNode);
+    currentNode = currentNode.prevNode;
+  }
+  return nodesInOrder;
 }

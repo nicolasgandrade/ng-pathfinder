@@ -5,6 +5,7 @@ export default class Node {
   private _isFinal: boolean;
   private _distance: number;
   private _isVisited: boolean;
+  prevNode!: Node;
 
   constructor(row: number, col: number, isInitial = false, isFinal = false, distance = Infinity, isVisited = false) {
     this._row = row;

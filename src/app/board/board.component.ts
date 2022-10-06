@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import Node from '../models/node';
-import { runDijkstra } from '../algorithms/dijkstra';
+import { runDijkstra, getShortestPath } from '../algorithms/dijkstra';
 import { NodeComponent } from './node/node.component';
 
 @Component({
@@ -17,12 +17,14 @@ export class BoardComponent implements OnInit {
   nodes: Array<Array<Node>> = [];
 
   dijkstraResult: Array<Node> = [];
+  shortestPath: Array<Node> = [];
 
   constructor() {}
 
   ngOnInit(): void {
     this.createBoard();
     this.dijkstraResult = runDijkstra(this.nodes, this.initialNode, this.finalNode);
+    this.shortestPath = getShortestPath(this.dijkstraResult[this.dijkstraResult.length -1])
   }
 
   createBoard() {
@@ -44,12 +46,24 @@ export class BoardComponent implements OnInit {
     this.nodes = boardNodes;
   }
 
-  animate(visitedNodes: Array<Node>) {
+  animate(visitedNodes: Array<Node>, shortestPath: Array<Node>) {
     for (let i = 0; i < visitedNodes.length; i++) {
       setTimeout(() => {
         const node = visitedNodes[i];
         document.getElementById(`node-${node.row}-${node.col}`)!.className = 'node visited'
+        if (i === visitedNodes.length - 1) {
+          this.showShortestPath(shortestPath);
+        }
       }, 15 * i);
+    }
+  }
+
+  showShortestPath(shortest: Array<Node>) {
+    for (let i = 0; i < shortest.length; i++) {
+      setTimeout(() => {
+        const node = shortest[i];
+        document.getElementById(`node-${node.row}-${node.col}`)!.className = 'node shortest'
+      }, 10 * i);
     }
   }
 }
