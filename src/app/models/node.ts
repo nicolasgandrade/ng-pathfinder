@@ -5,15 +5,23 @@ export default class Node {
   private _isFinal: boolean;
   private _distance: number;
   private _isVisited: boolean;
+  private _isWall: boolean;
   prevNode!: Node;
 
-  constructor(row: number, col: number, isInitial = false, isFinal = false, distance = Infinity, isVisited = false) {
+  constructor(row: number,
+              col: number,
+              isInitial = false,
+              isFinal = false,
+              distance = Infinity,
+              isVisited = false,
+              isWall = false) {
     this._row = row;
     this._col = col;
     this._isInitial = isInitial;
     this._isFinal = isFinal;
     this._distance = distance;
-    this._isVisited = isVisited
+    this._isVisited = isVisited;
+    this._isWall = isWall;
   }
 
   public get row() {
@@ -62,5 +70,13 @@ export default class Node {
 
   public set isVisited(visited: boolean) {
     this._isVisited = visited;
+  }
+
+  public get isWall() {
+    return this._isWall;
+  }
+
+  public set isWall(isWall: boolean) {
+    this._isWall = isWall;
   }
 }

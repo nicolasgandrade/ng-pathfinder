@@ -7,7 +7,7 @@
     *ngFor="let col of [].constructor(cols); let colIndex = index"
     class="columns"
     >
-      <app-node [node]="nodes[rowIndex][colIndex]"></app-node>
+      <app-node [node]="nodes[rowIndex][colIndex]" (click)="toggleWall(nodes[rowIndex][colIndex])" ></app-node>
     </div>
   </div>
 </div>

@@ -2,5 +2,6 @@
   [id]="'node-'+node.row+'-'+node.col"
   class="node"
   [ngClass]="node.isInitial ? 'initial' :
-             node.isFinal ? 'final' : ''"
+             node.isFinal ? 'final' :
+             node.isWall ? 'wall' : ''"
 ></div>
