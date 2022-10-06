@@ -9,8 +9,8 @@ import { NodeComponent } from './node/node.component';
   styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent implements OnInit {
-  rows = 15;
-  cols = 40;
+  rows = 20;
+  cols = 45;
   initialNode = new Node(7, 10, true, false, 0);
   finalNode = new Node(7, 30, false, true, Infinity);
 
