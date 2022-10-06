@@ -12,7 +12,7 @@ export class BoardComponent implements OnInit {
   rows = 20;
   cols = 45;
   initialNode = new Node(7, 10, true, false, 0);
-  finalNode = new Node(7, 30, false, true, Infinity);
+  finalNode = new Node(7, 20, false, true, Infinity);
 
   nodes: Array<Array<Node>> = [];
 
@@ -46,6 +46,10 @@ export class BoardComponent implements OnInit {
     this.nodes = boardNodes;
   }
 
+  /* To animate the path, instead of using an "Angular approch", we need to get the elements
+  by theirs id's, due to performance problems when running the change detector in small time
+  intervals. In the appropriate scenario, we must update the Node data to change its classes
+  and then run the change detector to render the new view. */
   animate(visitedNodes: Array<Node>, shortestPath: Array<Node>) {
     for (let i = 0; i < visitedNodes.length; i++) {
       setTimeout(() => {
