@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import Node from 'src/app/models/node';
 
 @Component({
@@ -9,7 +9,11 @@ import Node from 'src/app/models/node';
 export class NodeComponent implements OnInit {
   @Input() node!: Node;
 
-  constructor() {}
+  constructor(private ref: ChangeDetectorRef) {}
 
   ngOnInit(): void {}
+
+  runDetection() {
+    this.ref.detectChanges();
+  }
 }

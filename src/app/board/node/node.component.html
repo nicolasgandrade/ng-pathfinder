@@ -1,4 +1,6 @@
 <div
+  [id]="'node-'+node.row+'-'+node.col"
   class="node"
-  [ngClass]="node.isInitial ? 'initial' : node.isFinal ? 'final' : ''"
+  [ngClass]="node.isInitial ? 'initial' :
+             node.isFinal ? 'final' : ''"
 ></div>

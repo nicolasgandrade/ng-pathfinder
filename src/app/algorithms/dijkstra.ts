@@ -57,5 +57,5 @@ function findNeighbors(node: Node, grid: Array<Array<Node>>): Array<Node> {
 
 function updateNeighbors(node: Node, grid: Array<Array<Node>>) {
   const foundNeighbors = findNeighbors(node, grid);
-  foundNeighbors.forEach(neighbor => neighbor.distance = neighbor.distance + 1);
+  foundNeighbors.forEach(neighbor => neighbor.distance = node.distance + 1);
 }

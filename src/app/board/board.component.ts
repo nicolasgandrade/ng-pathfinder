@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import Node from '../models/node';
 import { runDijkstra } from '../algorithms/dijkstra';
+import { NodeComponent } from './node/node.component';
 
 @Component({
   selector: 'app-board',
@@ -19,7 +20,8 @@ export class BoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.createBoard();
-    console.log(runDijkstra(this.nodes, this.initialNode, this.finalNode))
+    // const visitedNodes = runDijkstra(this.nodes, this.initialNode, this.finalNode);
+    this.animate(runDijkstra(this.nodes, this.initialNode, this.finalNode));
   }
 
   createBoard() {
@@ -39,5 +41,14 @@ export class BoardComponent implements OnInit {
     }
 
     this.nodes = boardNodes;
+  }
+
+  animate(visitedNodes: Array<Node>) {
+    for (let i = 0; i < visitedNodes.length; i++) {
+      setTimeout(() => {
+        const node = visitedNodes[i];
+        document.getElementById(`node-${node.row}-${node.col}`)!.className = 'node visited'
+      }, 50 * i);
+    }
   }
 }
