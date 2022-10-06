@@ -1,7 +1,6 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import Node from '../models/node';
 import { runDijkstra, getShortestPath } from '../algorithms/dijkstra';
-import { NodeComponent } from './node/node.component';
 
 @Component({
   selector: 'app-board',
@@ -11,8 +10,20 @@ import { NodeComponent } from './node/node.component';
 export class BoardComponent implements OnInit {
   rows = 20;
   cols = 45;
-  initialNode = new Node(7, 10, true, false, 0);
-  finalNode = new Node(7, 20, false, true, Infinity);
+  initialNode = new Node(
+                        Math.floor(Math.random() * 20),
+                        Math.floor(Math.random() * 45),
+                        true,
+                        false,
+                        0
+                        );
+  finalNode = new Node(
+                      Math.floor(Math.random() * 20),
+                      Math.floor(Math.random() * 45),
+                      false,
+                      true,
+                      Infinity
+                      );
 
   nodes: Array<Array<Node>> = [];
 
