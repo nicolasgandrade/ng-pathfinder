@@ -19,7 +19,7 @@ export class BoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.createBoard();
-    runDijkstra(this.nodes, this.initialNode, this.finalNode)
+    console.log(runDijkstra(this.nodes, this.initialNode, this.finalNode))
   }
 
   createBoard() {
