@@ -1,13 +1,13 @@
-<button (click)="animate(dijkstraResult, shortestPath)">Start Dijkstra's visualization</button>
-
-<div
+<div class="board">
+  <div
   *ngFor="let row of [].constructor(rows); let rowIndex = index"
   class="rows"
->
-  <div
+  >
+    <div
     *ngFor="let col of [].constructor(cols); let colIndex = index"
     class="columns"
-  >
-    <app-node [node]="nodes[rowIndex][colIndex]"></app-node>
+    >
+      <app-node [node]="nodes[rowIndex][colIndex]"></app-node>
+    </div>
   </div>
 </div>
