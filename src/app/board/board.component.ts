@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import Node from '../models/node';
 import { runDijkstra, getShortestPath } from '../algorithms/dijkstra';
 import { NodeComponent } from './node/node.component';
@@ -69,5 +69,9 @@ export class BoardComponent implements OnInit {
         document.getElementById(`node-${node.row}-${node.col}`)!.className = 'node shortest'
       }, 10 * i);
     }
+  }
+
+  runAnimation() {
+    this.animate(this.dijkstraResult, this.shortestPath);
   }
 }

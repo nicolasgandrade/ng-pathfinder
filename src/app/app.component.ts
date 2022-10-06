@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { BoardComponent } from './board/board.component';
+import { Component, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  @ViewChild(BoardComponent) board!: BoardComponent;
+
   title = 'Ng Pathfinder';
+
+  triggerVisualizer() {
+    this.board.runAnimation();
+  }
 }
