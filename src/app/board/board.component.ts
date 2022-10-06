@@ -35,7 +35,7 @@ export class BoardComponent implements OnInit {
   ngOnInit(): void {
     this.createBoard();
     this.dijkstraResult = runDijkstra(this.nodes, this.initialNode, this.finalNode);
-    this.shortestPath = getShortestPath(this.dijkstraResult[this.dijkstraResult.length -1])
+    this.shortestPath = getShortestPath(this.initialNode, this.dijkstraResult[this.dijkstraResult.length -1])
   }
 
   createBoard() {

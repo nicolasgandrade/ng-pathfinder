@@ -63,12 +63,13 @@ function updateNeighbors(node: Node, grid: Array<Array<Node>>) {
   });
 }
 
-export function getShortestPath(finalNode: Node) {
+export function getShortestPath(initialNode: Node, finalNode: Node): Array<Node> {
   const nodesInOrder = [];
   let currentNode = finalNode;
   while (currentNode.prevNode !== undefined) {
     nodesInOrder.unshift(currentNode);
     currentNode = currentNode.prevNode;
   }
+  nodesInOrder.unshift(initialNode);
   return nodesInOrder;
 }
