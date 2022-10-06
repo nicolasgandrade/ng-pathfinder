@@ -30,12 +30,18 @@ export class BoardComponent implements OnInit {
   dijkstraResult: Array<Node> = [];
   shortestPath: Array<Node> = [];
 
+  hasRan = false;
+
   constructor() {}
 
   ngOnInit(): void {
+    this.setup();
+  }
+
+  setup() {
     this.createBoard();
     this.dijkstraResult = runDijkstra(this.nodes, this.initialNode, this.finalNode);
-    this.shortestPath = getShortestPath(this.initialNode, this.dijkstraResult[this.dijkstraResult.length -1])
+    this.shortestPath = getShortestPath(this.initialNode, this.dijkstraResult[this.dijkstraResult.length -1]);
   }
 
   createBoard() {
@@ -71,6 +77,7 @@ export class BoardComponent implements OnInit {
         }
       }, 15 * i);
     }
+    this.hasRan = true;
   }
 
   showShortestPath(shortest: Array<Node>) {
@@ -83,6 +90,36 @@ export class BoardComponent implements OnInit {
   }
 
   runAnimation() {
-    this.animate(this.dijkstraResult, this.shortestPath);
+    if (this.hasRan) {
+      this.clearBoard(this.nodes);
+
+      this.initialNode = new Node(
+        Math.floor(Math.random() * 20),
+        Math.floor(Math.random() * 45),
+        true,
+        false,
+        0
+      );
+      this.finalNode = new Node(
+        Math.floor(Math.random() * 20),
+        Math.floor(Math.random() * 45),
+        false,
+        true,
+        Infinity
+      );
+      this.setup();
+      this.animate(this.dijkstraResult, this.shortestPath);
+    } else {
+      this.animate(this.dijkstraResult, this.shortestPath);
+    }
+  }
+
+  clearBoard(board: Array<Array<Node>>) {
+    board.forEach(row => {
+      row.forEach(n => {
+        const node = n;
+        document.getElementById(`node-${node.row}-${node.col}`)!.className = 'node';
+      });
+    });
   }
 }
