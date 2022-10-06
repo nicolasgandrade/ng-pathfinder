@@ -78,7 +78,7 @@ export class BoardComponent implements OnInit {
       setTimeout(() => {
         const node = shortest[i];
         document.getElementById(`node-${node.row}-${node.col}`)!.className = 'node shortest'
-      }, 10 * i);
+      }, 30 * i);
     }
   }
 
