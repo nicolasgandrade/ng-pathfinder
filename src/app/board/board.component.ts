@@ -16,12 +16,13 @@ export class BoardComponent implements OnInit {
 
   nodes: Array<Array<Node>> = [];
 
+  dijkstraResult: Array<Node> = [];
+
   constructor() {}
 
   ngOnInit(): void {
     this.createBoard();
-    // const visitedNodes = runDijkstra(this.nodes, this.initialNode, this.finalNode);
-    this.animate(runDijkstra(this.nodes, this.initialNode, this.finalNode));
+    this.dijkstraResult = runDijkstra(this.nodes, this.initialNode, this.finalNode);
   }
 
   createBoard() {
@@ -48,7 +49,7 @@ export class BoardComponent implements OnInit {
       setTimeout(() => {
         const node = visitedNodes[i];
         document.getElementById(`node-${node.row}-${node.col}`)!.className = 'node visited'
-      }, 50 * i);
+      }, 15 * i);
     }
   }
 }
