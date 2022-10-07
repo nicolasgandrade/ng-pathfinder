@@ -15,6 +15,9 @@ export function runDijkstra(nodes: Array<Array<Node>>, initialNode: Node, finalN
 
     const closestNode = unvisitedNodes.shift();
 
+    if (closestNode?.isWall) continue;
+    if (closestNode?.distance === Infinity) return visitedNodes;
+
     closestNode!.isVisited = true;
     visitedNodes.push(closestNode!);
 

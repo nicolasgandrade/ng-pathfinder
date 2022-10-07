@@ -35,13 +35,13 @@ export class BoardComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.setup();
+    this.createBoard();
   }
 
-  setup() {
-    this.createBoard();
+  viewDijkstra() {
     this.dijkstraResult = runDijkstra(this.nodes, this.initialNode, this.finalNode);
     this.shortestPath = getShortestPath(this.initialNode, this.dijkstraResult[this.dijkstraResult.length -1]);
+    this.animate(this.dijkstraResult, this.shortestPath);
   }
 
   createBoard() {
@@ -107,10 +107,10 @@ export class BoardComponent implements OnInit {
         true,
         Infinity
       );
-      this.setup();
-      this.animate(this.dijkstraResult, this.shortestPath);
+      this.createBoard();
+      this.hasRan = false;
     } else {
-      this.animate(this.dijkstraResult, this.shortestPath);
+      this.viewDijkstra();
     }
   }
 
