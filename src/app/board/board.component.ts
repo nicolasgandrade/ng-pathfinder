@@ -125,6 +125,5 @@ export class BoardComponent implements OnInit {
 
   toggleWall(node: Node) {
     node.isWall ? node.isWall = false : node.isWall = true;
-    console.log(node);
   }
 }

@@ -74,5 +74,6 @@ export function getShortestPath(initialNode: Node, finalNode: Node): Array<Node>
     currentNode = currentNode.prevNode;
   }
   nodesInOrder.unshift(initialNode);
+  if (nodesInOrder[nodesInOrder.length - 1].isFinal != true) return [];
   return nodesInOrder;
 }
