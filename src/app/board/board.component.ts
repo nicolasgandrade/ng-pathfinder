@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import Node from '../models/node';
 import { runDijkstra, getShortestPath } from '../algorithms/dijkstra';
 
@@ -8,6 +8,8 @@ import { runDijkstra, getShortestPath } from '../algorithms/dijkstra';
   styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent implements OnInit {
+  @Output() isRunning = new EventEmitter<boolean>();
+
   rows = 20;
   cols = 45;
   initialNode = new Node(
@@ -68,6 +70,7 @@ export class BoardComponent implements OnInit {
   intervals. In the appropriate scenario, we must update the Node data to change its classes
   and then run the change detector to render the new view. */
   animate(visitedNodes: Array<Node>, shortestPath: Array<Node>) {
+    this.isRunning.emit(true);
     for (let i = 0; i < visitedNodes.length; i++) {
       setTimeout(() => {
         const node = visitedNodes[i];
@@ -84,7 +87,10 @@ export class BoardComponent implements OnInit {
     for (let i = 0; i < shortest.length; i++) {
       setTimeout(() => {
         const node = shortest[i];
-        document.getElementById(`node-${node.row}-${node.col}`)!.className = 'node shortest'
+        document.getElementById(`node-${node.row}-${node.col}`)!.className = 'node shortest';
+        if (i == shortest.length - 1) {
+          this.isRunning.emit(false);
+        }
       }, 30 * i);
     }
   }

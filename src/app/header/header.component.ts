@@ -8,6 +8,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class HeaderComponent implements OnInit {
   @Output() trigger = new EventEmitter();
 
+  isButtonDisabled = false;
+
   constructor() { }
 
   ngOnInit(): void {
